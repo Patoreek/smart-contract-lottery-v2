@@ -3,6 +3,5 @@ src = "src"
 out = "out"
 libs = ["lib"]
 remappings = ['@chainlink/contracts/=lib/chainlink-brownie-contracts/']
-[dependencies]
-chainlink-brownie-contracts = { git = "https://github.com/smartcontractkit/chainlink-brownie-contracts", tag = "v0.6.1" }
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
