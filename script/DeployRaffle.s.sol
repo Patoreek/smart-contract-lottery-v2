@@ -6,29 +6,24 @@ import {Raffle} from "src/Raffle.sol";
 import {HelperConfig} from "./HelperConfig.s.sol";
 
 contract DeployRaffle is Script {
+    function run() public {}
 
-    function run() public {
-
-    }
-
-    function deployContract() public returns(Raffle, HelperConfig) {
+    function deployContract() public returns (Raffle, HelperConfig) {
         HelperConfig helperConfig = new HelperConfig();
         // local => deploy mocks with local config
         // sepolia => get sepolia config
         HelperConfig.NetworkConfig memory config = helperConfig.getConfig();
 
         vm.startBroadcast();
-        Raffle raffle = new Raffle({
+        Raffle raffle = new Raffle(
             config.entranceFee,
             config.interval,
             config.subscriptionId,
             config.gasLane,
-            config.callbackGasLimit,
-
-        });
+            config.callbackGasLimit
+        );
         vm.stopBroadcast();
 
         return (raffle, helperConfig);
     }
-
 }
