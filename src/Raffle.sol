@@ -83,9 +83,6 @@ contract Raffle is VRFConsumerBaseV2Plus {
     }
 
     function performUpkeep(bytes calldata /* performData */) external payable {
-        // if (block.timestamp - s_lastTimeStamp < i_interval) {
-        //     revert();
-        // }
         (bool upkeepNeeded, ) = checkUpkeep("");
         s_raffleState = RaffleState.CALCULATING;
         if (!upkeepNeeded)
@@ -128,5 +125,13 @@ contract Raffle is VRFConsumerBaseV2Plus {
     /** Getters */
     function getEntranceFee() external view returns (uint256) {
         return i_entranceFee;
+    }
+
+    function getRaffleState() external view returns (RaffleState) {
+        return s_raffleState;
+    }
+
+    function getPlayer(uint256 indexOfPlayer) external view returns (address) {
+        return s_players[indexOfPlayer];
     }
 }
